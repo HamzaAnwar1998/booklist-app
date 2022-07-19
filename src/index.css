@@ -1,13 +1,74 @@
-body {
+*{
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+.custom-container{
+  width: 100%;
+  max-width: 750px;
+  margin: 20px auto;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+.heading{
+  text-align: center;
+  font-size: 28px;
+}
+
+.book{
+  width: 100%;
+  margin: 20px auto;
+  background-color: #e4e4e4;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  border-radius: 12px;
+}
+
+@media(max-width: 768px){
+  .custom-container{
+    max-width: 95%;
+  }
+}
+
+.actions span{
+  margin: 0 5px;
+  cursor: pointer;
+}
+
+.trash{
+  color: red;
+}
+
+.edit{
+  color: #0491ff;
+}
+
+.button-div{
+  display: flex;
+  align-items: flex-end;
+}
+
+.delete-all{
+  width: 100%;
+  margin-top: 7px;
+}
+
+.submit-btn{
+  width: 100%;
+}
+
+.message-box{
+  height: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.back-btn{
+  width: 100%;
+  margin-top:7px;
 }
