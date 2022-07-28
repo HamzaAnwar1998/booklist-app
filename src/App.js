@@ -1,55 +1,40 @@
-import { useState, useEffect } from "react";
-import { Form } from "./components/Form";
+import { useSelector, useDispatch } from "react-redux";
 import { Books } from "./components/Books";
-import { useSelector,useDispatch } from "react-redux";
-import { getBooks, deleteAll } from "./redux/books/actions";
+import { Form } from "./components/Form";
+import {useEffect} from 'react';
+import { getBooks, deleteAll } from "./redux/actions";
 
 function App() {
+
   const dispatch = useDispatch();
 
-  const books = useSelector(state=>state.operationsReducer);
+  const books = useSelector((state)=>state.operationsReducer);
 
   useEffect(()=>{
-    dispatch(getBooks());
+    dispatch(getBooks())
   },[dispatch])
-
-  const handleDeleteAll=()=>{
-    dispatch(deleteAll());
-  }
-
-  const [editFormVisibility, setEditFormVisibility]=useState(false);
-  const [toEditObj, setToEditObj]=useState('');
-
-  const handleEdit=(bookObj)=>{
-    setEditFormVisibility(true);
-    setToEditObj(bookObj);
-  }
-
-  const cancelUpdate=()=>{
-    setEditFormVisibility(false);
-    setToEditObj('');
-  }
 
   return (
     <div className="custom-container">
-      <h1 className="heading">Book-List App using React | Redux | Firebase</h1>
+      <h1 className="heading">
+        Book-List App using React | Redux | Firebase
+      </h1>
       <br></br>
-      <Form editFormVisibility={editFormVisibility} toEditObj={toEditObj}
-      cancelUpdate={cancelUpdate}/>
-      {books.length > 0 ?(
+      <Form/>
+      {books.length > 0?(
         <>
-         <Books books={books} editFormVisibility={editFormVisibility}
-          handleEdit={handleEdit}/>
-         {books.length > 1&&(
+          <Books books={books}/>
+          {books.length > 1&&(
             <button className="btn btn-outline-danger btn-md delete-all"
-            onClick={handleDeleteAll}>
+            onClick={()=>dispatch(deleteAll())}>
               DELETE ALL
             </button>
-         )}
+          )}
         </>
-      ):(
-        <div className="message-box">No books found, Add a book to display it here</div>
-      )}
+      )
+      :(<div className="message-box">
+        No books found, add a book to display it here
+      </div>)}
     </div>
   );
 }
